@@ -1,0 +1,51 @@
+# add the following rule in .eslintrc.js
+'prettier/prettier': [
+	'error',
+	{
+		endOfLine: 'auto'
+	}
+]
+
+# change trailingComma to 'none' in .prettierrc
+
+# inside tsconfig.json, in "compilerOptions" add:
+	"strict": true,
+	"strictPropertyInitialization": false,
+  "skipLibCheck": true
+
+$ nest new
+
+$ npm run start:dev
+
+
+$ nest g module auth
+
+# generate model
+$ nest g class product/product.model --no-spec
+
+
+
+
+
+
+
+
+
+
+$ nest generate controller
+or
+$ nest g co
+$ nest g co --no-spec
+
+# use --dry-run to view only the result
+$ nest g co controller_name --dry-run
+
+$ nest generate service
+or
+$ nest g s
+
+$ nest g module module_name
+
+$ nest g class coffees/dto/create-coffee.dto --no-spec
+
+$ docker-compose up -d
