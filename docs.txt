@@ -38,6 +38,8 @@ $ docker volume ls
 $ docker volume inspect volume_name
 $ docker volume rm volume_name
 
+$ git rm --cached mongo-data -r
+
 
 
 $ nest generate controller
