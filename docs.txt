@@ -1,10 +1,11 @@
-# add the following rule in .eslintrc.js
-'prettier/prettier': [
-	'error',
-	{
-		endOfLine: 'auto'
-	}
-]
+# add the following rules in .eslintrc.js
+	'@typescript-eslint/no-empty-function': 'on',
+	'prettier/prettier': [
+		'error',
+		{
+			endOfLine: 'auto'
+		}
+	]
 
 # change trailingComma to 'none' in .prettierrc
 
@@ -23,7 +24,7 @@ $ nest g module auth
 # generate model
 $ nest g class product/product.model --no-spec
 
-
+$ nest g controller auth
 
 
 
