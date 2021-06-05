@@ -26,10 +26,17 @@ $ nest g class product/product.model --no-spec
 
 $ nest g controller auth
 
+$ docker-compose u -d
 
+# inside docker-compose convert indentation to spaces:
+	F1 -> Convert Indentation to Spaces -> Enter
 
-
-
+$ docker ps --filter "name=mongo"
+$ docker stop mongo
+$ docker start mongo
+$ docker volume ls
+$ docker volume inspect volume_name
+$ docker volume rm volume_name
 
 
 
