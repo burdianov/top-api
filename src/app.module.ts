@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypegooseModule } from 'nestjs-typegoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,10 +9,16 @@ import { TopPageModule } from './top-page/top-page.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 import { TopPageController } from './top-page/top-page.controller';
+import { getMongoConfig } from './configs/mongo.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    TypegooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getMongoConfig
+    }),
     AuthModule,
     TopPageModule,
     ProductModule,

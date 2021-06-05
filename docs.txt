@@ -26,7 +26,9 @@ $ nest g class product/product.model --no-spec
 
 $ nest g controller auth
 
-$ docker-compose u -d
+$ docker-compose up -d
+
+$ docker-compose up --build --force-recreate --renew-anon-volumes
 
 # inside docker-compose convert indentation to spaces:
 	F1 -> Convert Indentation to Spaces -> Enter
@@ -36,6 +38,17 @@ $ docker stop mongo
 $ docker start mongo
 $ docker volume ls
 $ docker volume inspect volume_name
+$ docker volume rm volume_name
+
+$ docker-compose down --volumes
+$ docker container ls -aq
+
+$ docker-compose rm -fv mongo
+
+$ docker exec -it mongo bash
+$ mongo -u admin -p
+
+$ docker volume prune
 $ docker volume rm volume_name
 
 $ git rm --cached mongo-data -r
