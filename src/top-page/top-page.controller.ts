@@ -8,17 +8,23 @@ import {
   Patch,
   HttpCode
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import { TopPageModel } from './top-page.model';
 import { FindTopPageDto } from './dto/find-top-page.dto';
 
 @Controller('top-page')
 export class TopPageController {
+  constructor(private readonly configService: ConfigService) {}
+
   @Post('create')
   async create(@Body() dto: Omit<TopPageModel, '_id'>) {}
 
   @Get(':id')
-  async get(@Param('id') id: number) {}
+  async get(@Param('id') id: number) {
+    const res = this.configService.get('TEST');
+    return res;
+  }
 
   @Delete(':id')
   async delete(@Param('id') id: number) {}
