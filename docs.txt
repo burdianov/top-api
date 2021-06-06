@@ -59,10 +59,11 @@ $ git rm --cached mongo-data -r
 # undo 'git add' before commit
 $ git reset
 
-
+# for e2e tests
 $ npm run test:e2e
 
-
+# for unit tests
+$ npm run test
 
 
 
