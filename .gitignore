@@ -1,5 +1,6 @@
 .env
 /mongo-data-4.4
+/.clinic
 
 # compiled output
 /dist

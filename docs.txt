@@ -65,9 +65,15 @@ $ npm run test:e2e
 # for unit tests
 $ npm run test
 
+chrome://inspect/#devices
 
+# package for sending multiple test api requests
+$ npm i -g autocannon
 
+$ autocannon http://localhost:3000/api/review/byProduct/60bca2c1fbc82e8c7086c9ec
 
+$ npm i -g clinic
+$ clinic doctor --on-port 'autocannon localhost:$PORT/api/review/byProduct/60bca2c1fbc82e8c7086c9ec' -- node dist/main.js
 
 
 
