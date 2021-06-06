@@ -12,7 +12,8 @@
 # inside tsconfig.json, in "compilerOptions" add:
 	"strict": true,
 	"strictPropertyInitialization": false,
-  "skipLibCheck": true
+  "skipLibCheck": true,
+	"noImplicitAny": false
 
 $ nest new
 
@@ -25,6 +26,8 @@ $ nest g module auth
 $ nest g class product/product.model --no-spec
 
 $ nest g controller auth
+
+$ nest g service review
 
 $ docker-compose up -d
 
@@ -55,7 +58,6 @@ $ git rm --cached mongo-data -r
 
 # undo 'git add' before commit
 $ git reset
-
 
 
 
