@@ -60,6 +60,13 @@ $ git rm --cached mongo-data -r
 $ git reset
 
 
+$ npm run test:e2e
+
+
+
+
+
+
 
 
 
