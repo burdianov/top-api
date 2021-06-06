@@ -53,6 +53,12 @@ $ docker volume rm volume_name
 
 $ git rm --cached mongo-data -r
 
+# undo 'git add' before commit
+$ git reset
+
+
+
+
 
 
 $ nest generate controller
