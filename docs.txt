@@ -27,7 +27,7 @@ $ nest g class product/product.model --no-spec
 
 $ nest g controller auth
 
-$ nest g service review
+$ nest g service auth
 
 $ docker-compose up -d
 

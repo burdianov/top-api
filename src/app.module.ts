@@ -24,7 +24,7 @@ import { getMongoConfig } from './configs/mongo.config';
     ProductModule,
     ReviewModule
   ],
-  controllers: [AppController, TopPageController],
+  controllers: [AppController],
   providers: [AppService]
 })
 export class AppModule {}
