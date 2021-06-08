@@ -1,5 +1,5 @@
 # add the following rules in .eslintrc.js
-	'@typescript-eslint/no-empty-function': 'on',
+	'@typescript-eslint/no-empty-function': 1,
 	'prettier/prettier': [
 		'error',
 		{
