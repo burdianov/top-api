@@ -33,7 +33,7 @@ $ docker-compose up -d
 
 $ docker-compose up --build --force-recreate --renew-anon-volumes
 
-# inside docker-compose convert indentation to spaces:
+# inside docker-compose convert tabs to spaces:
 	F1 -> Convert Indentation to Spaces -> Enter
 
 $ docker ps --filter "name=mongo"
