@@ -6,33 +6,75 @@ import {
   Param,
   Delete,
   Patch,
-  HttpCode
+  HttpCode,
+  NotFoundException,
+  UsePipes,
+  ValidationPipe,
+  UseGuards
 } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
-import { TopPageModel } from './top-page.model';
 import { FindTopPageDto } from './dto/find-top-page.dto';
+import { TopPageService } from './top-page.service';
+import { CreateTopPageDto } from './dto/create-top-page.dto';
+import { IdValidationPipe } from './../pipes/id-validation.pipe';
+import { NOT_FOUND_TOP_PAGE_ERROR } from './top-page.constants';
+import { JwtAuthGuard } from './../auth/guards/jwt.guards';
 
 @Controller('top-page')
 export class TopPageController {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly topPageService: TopPageService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post('create')
-  async create(@Body() dto: Omit<TopPageModel, '_id'>) {}
-
-  @Get(':id')
-  async get(@Param('id') id: number) {
-    // const res = this.configService.get('TEST');
-    // return res;
+  async create(@Body() dto: CreateTopPageDto) {
+    return this.topPageService.create(dto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  async get(@Param('id', IdValidationPipe) id: string) {
+    const page = await this.topPageService.findById(id);
+    if (!page) {
+      throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
+    }
+    return page;
+  }
+
+  @Get('byAlias/:alias')
+  async getByAlias(@Param('alias') alias: string) {
+    const page = await this.topPageService.findByAlias(alias);
+    if (!page) {
+      throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
+    }
+    return page;
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  async delete(@Param('id') id: number) {}
+  async delete(@Param('id', IdValidationPipe) id: string) {
+    const deletedPage = await this.topPageService.deleteById(id);
+    if (!deletedPage) {
+      throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
+    }
+  }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
-  async patch(@Param('id') id: number, @Body() dto: TopPageModel) {}
+  async patch(
+    @Param('id', IdValidationPipe) id: string,
+    @Body() dto: CreateTopPageDto
+  ) {
+    const updatedPage = await this.topPageService.updateById(id, dto);
+    if (!updatedPage) {
+      throw new NotFoundException(NOT_FOUND_TOP_PAGE_ERROR);
+    }
+    return updatedPage;
+  }
 
+  @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Post()
-  async find(@Body() dto: FindTopPageDto) {}
+  @Post('find')
+  async find(@Body() dto: FindTopPageDto) {
+    return this.topPageService.findByCategory(dto.firstCategory);
+  }
 }
